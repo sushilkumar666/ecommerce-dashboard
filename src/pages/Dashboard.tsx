@@ -1,4 +1,3 @@
-import React from "react";
 
 import InfoCard from "../components/Cards/InfoCard";
 import ChartCard from "../components/Chart/ChartCard";

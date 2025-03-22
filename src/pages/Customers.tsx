@@ -1,4 +1,3 @@
-import React from "react";
 import PageTitle from "@/Typography/PageTitle";
 import ChartCard from "../components/Chart/ChartCard";
 import { Line, Bar } from "react-chartjs-2";

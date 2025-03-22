@@ -1,4 +1,3 @@
-import React from "react";
 import "../assets/css/loadingSpinner.css";
 
 function ThemedSuspense() {

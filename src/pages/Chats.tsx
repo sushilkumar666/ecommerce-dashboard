@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import ChatUserCard from "../components/ChatUserCard";
 import SelectChatWaiter from "../components/SelectChatWait/SelectChatWaiter";
