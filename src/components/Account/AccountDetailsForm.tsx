@@ -9,18 +9,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 
 const states = [
-    { value: "New York", label: "New York" },
-    { value: "California", label: "California" },
+    { value: "Uttar Pradesh", label: "Uttar Pradesh" },
+    { value: "Maharashtra", label: "Maharashtra" },
 ];
 
 export default function AccountDetailsForm() {
     const [formData, setFormData] = useState({
-        firstName: "Sofia",
-        lastName: "Rivers",
-        email: "sofia@devias.io",
-        phone: "",
-        state: "New York",
-        city: "",
+        firstName: "Sushilkumar",
+        lastName: "Sharma",
+        email: "sushilssharma064@gmail.com",
+        phone: "724941XXXXX",
+        state: "Maharashtra",
+        city: "Mumbai",
     });
 
     return (

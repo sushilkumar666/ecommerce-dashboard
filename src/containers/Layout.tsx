@@ -56,8 +56,7 @@ import React from 'react'
 import Header from '../components/Header';
 import Sidebar from '@/components/Sidebar';
 import { Outlet } from 'react-router-dom'
-import { SidebarContext, useSidebar } from '@/context/SidebarContext';
-import { useContext } from 'react';
+import { useSidebar } from '@/context/SidebarContext';
 
 interface SidebarContextType {
     isSidebarOpen: boolean;
@@ -65,7 +64,7 @@ interface SidebarContextType {
 }
 
 function Layout() {
-    const { isSidebarOpen, closeSidebar } = useSidebar();
+    const { isSidebarOpen } = useSidebar();
     return (
         <div
             className={`flex h-screen bg-gray-50 dark:bg-gray-900  ${isSidebarOpen && 'overflow-hidden'}`}>

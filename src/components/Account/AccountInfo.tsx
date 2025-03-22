@@ -2,13 +2,14 @@ import * as React from 'react';
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import sushilImage from '../../assets/img/sushil-image.png'
 const user = {
-    name: 'Sofia Rivers',
+    name: 'Sushilkumar Sharma',
     avatar: '/assets/avatar.png',
     jobTitle: 'Senior Developer',
-    country: 'USA',
-    city: 'Los Angeles',
-    timezone: 'GTM-7',
+    country: 'INDIA',
+    city: 'Mumbai',
+    timezone: 'IST',
 } as const;
 
 export function AccountInfo(): React.JSX.Element {
@@ -16,8 +17,8 @@ export function AccountInfo(): React.JSX.Element {
         <Card className="w-full p-4">
             <CardContent className="flex flex-col items-center gap-3">
                 {/* Avatar */}
-                <Avatar className="h-20 w-20">
-                    <AvatarImage src={user.avatar} alt="Sofia Rivers" />
+                <Avatar className="h-20 w-auto">
+                    <AvatarImage src={sushilImage} alt="Sushil Sharma" />
                     <AvatarFallback>SR</AvatarFallback>
                 </Avatar>
 

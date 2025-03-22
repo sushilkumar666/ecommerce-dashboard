@@ -1,8 +1,8 @@
-import { StrictMode, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import './App.css'
-import App from './App.tsx'
+// import App from './App.tsx'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Dashboard from './pages/Dashboard.tsx'
 import Orders from './pages/Orders.tsx'
@@ -11,11 +11,11 @@ import AddProduct from './pages/AddProduct.tsx'
 import SingleProduct from './pages/SingleProduct.tsx'
 import Customers from './pages/Customers.tsx'
 import Chats from './pages/Chats.tsx'
-import Profile from './pages/Profile.tsx'
+// import Profile from './pages/Profile.tsx'
 import Settings from './pages/Settings.tsx'
 import Page404 from './pages/404.tsx'
 import Blank from './pages/Blank.tsx'
-import AccessibleNavigationAnnouncer from "./components/AccessibleNavigationAnnouncer";
+// import AccessibleNavigationAnnouncer from "./components/AccessibleNavigationAnnouncer";
 const Layout = lazy(() => import("./containers/Layout"));
 const Login = lazy(() => import("./pages/Login"));
 const CreateAccount = lazy(() => import("./pages/CreateAccount"));

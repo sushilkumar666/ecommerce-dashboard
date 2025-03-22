@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import response from "../utils/demo/usersData";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "./ui/badge";
+// import { Badge } from "./ui/badge";
 import {
     Table,
     TableBody,

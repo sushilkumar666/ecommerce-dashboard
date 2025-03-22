@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { SidebarContext } from "../context/SidebarContext";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useTheme } from "@/context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 import {
     SearchIcon,
     MoonIcon,
