@@ -43,9 +43,9 @@ const UsersTable: React.FC<UserTableProps> = ({ resultsPerPage, filter }) => {
 
     const totalResults = response.length;
 
-    const onPageChange = (p: number) => {
-        setPage(p);
-    };
+    // const onPageChange = (p: number) => {
+    //     setPage(p);
+    // };
 
     useEffect(() => {
         const slicedData: UserType[] = response.slice(

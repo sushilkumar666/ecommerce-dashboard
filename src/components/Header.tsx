@@ -20,7 +20,7 @@ import {
 //     DropdownItem,
 //     WindmillContext,
 // } from "@windmill/react-ui";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import response from "../utils/demo/profileData";
 import {
     Avatar,
@@ -29,7 +29,7 @@ import {
 } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+// import { Button } from "./ui/button";
 
 import {
     DropdownMenu,

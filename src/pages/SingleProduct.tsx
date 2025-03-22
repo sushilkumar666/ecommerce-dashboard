@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import Icon from "../components/Icon";
 // import PageTitle from "../components/Typography/PageTitle";

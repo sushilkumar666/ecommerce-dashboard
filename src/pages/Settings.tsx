@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Notifications } from '@/components/Settings/notifications';
+import { Notifications } from '@/components/Settings/Notifications';
 import { UpdatePasswordForm } from '@/components/Settings/updatePasswordForm';
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // import PageTitle from "../components/Typography/PageTitle";
 import PageTitle from "@/Typography/PageTitle";
 import { Link, NavLink } from "react-router-dom";
@@ -36,7 +36,7 @@ import {
 import {
     Table,
     TableBody,
-    TableCaption,
+
     TableCell,
     TableFooter,
     TableHead,
@@ -71,14 +71,14 @@ import {
     AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogHeader,
-    AlertDialogTitle,
+    // AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
+    // PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
@@ -122,9 +122,9 @@ const ProductsAll = () => {
     const totalResults = response.length;
 
     // pagination change control
-    function onPageChange(p: number) {
-        setPage(p);
-    }
+    // function onPageChange(p: number) {
+    //     setPage(p);
+    // }
 
     // on page change, load new sliced data
     // here you would make another server request for new data
