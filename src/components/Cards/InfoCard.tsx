@@ -11,7 +11,7 @@ interface InforCardProps {
 const InfoCard: React.FC<InforCardProps> = ({ title, value, children: icon }) => {
   return (
     <Card>
-      <CardContent className="flex items-center">
+      <CardContent className="flex items-center h-fit">
         {icon}
         <div>
           <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>

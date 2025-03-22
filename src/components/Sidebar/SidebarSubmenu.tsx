@@ -9,6 +9,7 @@ import Transition from "../Transition";
 
 //@ts-ignore
 function Icon({ icon, ...props }) {
+    //@ts-ignore
     const Icon = Icons[icon];
     return <Icon {...props} />;
 }
@@ -51,12 +52,7 @@ const SidebarSubmenu: React.FC<SidebarSubmenuProps> = ({ route }) => {
             </button>
             <Transition
                 show={isDropdownMenuOpen}
-                enter="transition-all ease-in-out duration-300"
-                enterFrom="opacity-25 max-h-0"
-                enterTo="opacity-100 max-h-xl"
-                leave="transition-all ease-in-out duration-300"
-                leaveFrom="opacity-100 max-h-xl"
-                leaveTo="opacity-0 max-h-0"
+
             >
                 <ul
                     className="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"

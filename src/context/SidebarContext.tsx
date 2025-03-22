@@ -1,4 +1,4 @@
-import React, { useState, useMemo, ReactNode, createContext } from "react";
+import React, { useState, useMemo, ReactNode, useContext, createContext } from "react";
 
 // Define the context type
 interface SidebarContextType {
@@ -23,8 +23,8 @@ interface SidebarProviderProps {
 export const SidebarProvider: React.FC<SidebarProviderProps> = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
-    const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
-    const closeSidebar = () => setIsSidebarOpen(false);
+    const toggleSidebar = (): void => setIsSidebarOpen((prev) => !prev);
+    const closeSidebar = (): void => setIsSidebarOpen(false);
 
     const value = useMemo(
         () => ({
@@ -36,6 +36,14 @@ export const SidebarProvider: React.FC<SidebarProviderProps> = ({ children }) =>
     );
 
     return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
+};
+
+export const useSidebar = () => {
+    const context = useContext(SidebarContext);
+    if (!context) {
+        throw new Error("useSidebar must be used within a SidebarProvider");
+    }
+    return context;
 };
 
 

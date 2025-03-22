@@ -23,7 +23,6 @@ import { Badge } from "./ui/badge";
 import {
     Table,
     TableBody,
-
     TableCell,
     TableFooter,
     TableHead,
@@ -170,38 +169,40 @@ const OrdersTable: React.FC<OrderTableProps> = ({ resultsPerPage, filter }) => {
                     ))}
                 </TableBody>
             </Table>
-            <TableFooter>
-                {/* <Pagination
+            {/* <TableFooter>
+                <Pagination
                         totalResults={totalResults}
                         resultsPerPage={resultsPerPage}
                         label="Table navigation"
                         onChange={onPageChange}
-                    /> */}
-                <Pagination>
-                    <PaginationContent>
-                        <PaginationItem>
-                            <PaginationPrevious href="#" />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">1</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#" isActive>
-                                2
-                            </PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#">3</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationEllipsis />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationNext href="#" />
-                        </PaginationItem>
-                    </PaginationContent>
-                </Pagination>
-            </TableFooter>
+                    />
+
+                
+            </TableFooter> */}
+            <Pagination>
+                <PaginationContent>
+                    <PaginationItem>
+                        <PaginationPrevious href="#" />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink href="#">1</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink href="#" isActive>
+                            2
+                        </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink href="#">3</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationEllipsis />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationNext href="#" />
+                    </PaginationItem>
+                </PaginationContent>
+            </Pagination>
 
         </div>
     );

@@ -1,6 +1,15 @@
+interface ResponseType {
+    avatar: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    joined_on: string;
+    state: boolean;
+    messages: { flag: string; text: string }[] | null;
+}
 
 
-export default [
+const response: ResponseType[] = [
     {
         avatar: "https://i.pravatar.cc/300",
         first_name: "Chandler",
@@ -106,3 +115,5 @@ export default [
         messages: null,
     },
 ];
+
+export default response;

@@ -17,6 +17,8 @@ export const realTimeUsersBarLegends = [
     { title: "Active Users", color: "bg-teal-600" },
 ];
 
+
+
 export const doughnutOptions = {
     data: {
         datasets: [
@@ -40,6 +42,8 @@ export const doughnutOptions = {
         display: false,
     },
 };
+
+
 
 export const lineOptions = {
     data: {
@@ -69,7 +73,7 @@ export const lineOptions = {
             },
         ],
     },
-    options: {
+    options:  {
         responsive: true,
         tooltips: {
             mode: "index",

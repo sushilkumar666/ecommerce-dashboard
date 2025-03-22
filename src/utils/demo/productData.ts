@@ -1,4 +1,22 @@
-export default [
+interface ResponseType {
+    id: number;
+    photo: string;
+    name: string;
+    shortDescription: string;
+    featureDescription: string;
+    londDescription: string;
+    price: string;
+    qty: number;
+    rating: number;
+    reviews: {
+        username: string;
+        avatar_url: string;
+        review: string;
+        rate: number
+    }[]
+}
+
+const response: ResponseType[] = [
     {
         id: 1,
         photo: "https://vetra.laborasyon.com/assets/images/products/1.jpg",
@@ -370,3 +388,5 @@ export default [
         ],
     },
 ];
+
+export default response;
