@@ -35,10 +35,8 @@ const SidebarSubmenu: React.FC<SidebarSubmenuProps> = ({ route }) => {
         setIsDropdownMenuOpen(!isDropdownMenuOpen);
     }
 
-
-
     return (
-        <li className="relative px-6 py-3" key={route.name}>
+        <li className="relative  px-6 py-3 " key={route.name}>
             <button
                 className="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 onClick={handleDropdownMenuClick}
@@ -55,7 +53,7 @@ const SidebarSubmenu: React.FC<SidebarSubmenuProps> = ({ route }) => {
 
             >
                 <ul
-                    className="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                    className={`p-2 mt-2 ${isDropdownMenuOpen ? 'block' : 'hidden'} space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900`}
                     aria-label="submenu"
                 >
                     {route?.routes?.map((r) => (

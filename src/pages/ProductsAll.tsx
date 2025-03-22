@@ -228,11 +228,11 @@ const ProductsAll = () => {
 
                             </Label>
 
-                            <Label className="mr-8">
+                            <Label className="mr-8 ">
                                 {/* <!-- focus-within sets the color for the icon when input is focused --> */}
                                 <div className="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
                                     <input
-                                        className="py-3 pr-5 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+                                        className="py-3 px-4 pr-5 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
                                         placeholder="Number of Results"
                                         value={resultsPerPage}
                                         onChange={(e) => setResultsPerPage(Number(e.target.value))}
@@ -245,13 +245,13 @@ const ProductsAll = () => {
                             </Label>
                         </div>
                         <div className="">
-                            <Button
+                            <Button className="bg-[#7e3af2] hover:bg-[#7e3af2] hover:border-gray-500  dark:text-white"
                                 // icon={view === "list" ? ListViewIcon : GridViewIcon}
 
                                 onClick={handleChangeView}
                             >
-                                {/* {view === "list" ? ListViewIcon : GridViewIcon}  */}
-                                Edit
+                                {view === "list" ? <ListViewIcon /> : <GridViewIcon />}
+
                             </Button>
                         </div>
                     </div>
@@ -292,26 +292,7 @@ const ProductsAll = () => {
                     </div>
                 </ModalFooter>
             </Modal> */}
-            <AlertDialog>
-                <AlertDialogTrigger asChild>
-                    <Button variant="outline">Show Dialog</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <Icon icon={TrashIcon} className="w-6 h-6 mr-3" />
-                        Delete Product
 
-                        <AlertDialogDescription>
-                            Make sure you want to delete product{" "}
-                            {selectedDeleteProduct && `"${selectedDeleteProduct.name}"`}
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
 
             {/* Product Views */}
             {view === "list" ? (
@@ -396,30 +377,49 @@ const ProductsAll = () => {
                             />
 
                     </TableFooter> */}
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious href="#" />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">1</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#" isActive>
-                                    2
-                                </PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">3</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationNext href="#" />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
+
+                    <TableFooter className=" flex justify-center">
+                        <TableRow >
+                            <TableCell colSpan={100} className="text-center ">
+                                <Pagination>
+                                    <PaginationContent>
+                                        {/* Previous Button */}
+                                        <PaginationItem>
+                                            <PaginationPrevious
+                                                href="#"
+                                                onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                                                className={page === 1 ? "pointer-events-none opacity-50" : ""}
+                                            />
+                                        </PaginationItem>
+
+                                        {/* Dynamic Page Numbers */}
+                                        {Array.from({ length: Math.ceil(totalResults / resultsPerPage) }, (_, i) => (
+                                            <PaginationItem key={i}>
+                                                <PaginationLink
+                                                    href="#"
+                                                    isActive={page === i + 1}
+                                                    onClick={() => setPage(i + 1)}
+                                                >
+                                                    {i + 1}
+                                                </PaginationLink>
+                                            </PaginationItem>
+                                        ))}
+
+                                        {/* Next Button */}
+                                        <PaginationItem>
+                                            <PaginationNext
+                                                href="#"
+                                                onClick={() => setPage((prev) => Math.min(prev + 1, Math.ceil(totalResults / resultsPerPage)))}
+                                                className={page === Math.ceil(totalResults / resultsPerPage) ? "pointer-events-none opacity-50" : ""}
+                                            />
+                                        </PaginationItem>
+                                    </PaginationContent>
+                                </Pagination>
+                            </TableCell>
+                        </TableRow>
+                    </TableFooter>
+
+
 
                 </>
             ) : (
@@ -428,22 +428,22 @@ const ProductsAll = () => {
                     <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-8">
                         {data.map((product) => (
                             <div className="" key={product.id}>
-                                <Card>
+                                <Card className="py-0 pb-4">
                                     <img
                                         className="object-cover w-full"
                                         src={product.photo}
                                         alt="product"
                                     />
-                                    <CardContent>
+                                    <CardContent >
                                         <div className="mb-3 flex items-center justify-between">
                                             <p className="font-semibold truncate  text-gray-600 dark:text-gray-300">
                                                 {product.name}
                                             </p>
                                             <Badge
 
-                                                className={product.qty > 0 ? "success whitespace-nowrap" : "danger whitespace-nowrap"}
+                                                className={product.qty > 0 ? "bg-green-50 whitespace-nowrap text-green-500 dark:text-white dark:bg-green-700" : "bg-red-50 dark:text-white dark:bg-red-500 text-red-500   whitespace-nowrap"}
                                             >
-                                                <p className="break-normal">
+                                                <p className="break-normal ">
                                                     {product.qty > 0 ? `In Stock` : "Out of Stock"}
                                                 </p>
                                             </Badge>
@@ -462,10 +462,10 @@ const ProductsAll = () => {
                                                 <Link to={`/app/product/${product.id}`}>
                                                     <Button
 
-                                                        className="mr-3"
+                                                        className="mr-3 bg-[#7e3af2]"
 
                                                         size="sm"
-                                                    ><EyeIcon /> Preview</Button>
+                                                    ><EyeIcon /></Button>
                                                 </Link>
                                             </div>
                                             <div>
@@ -475,14 +475,28 @@ const ProductsAll = () => {
                                                     variant="outline"
 
                                                     size="sm"
-                                                ><EditIcon /> Edit</Button>
-                                                <Button
+                                                ><EditIcon /> </Button>
 
-                                                    variant="outline"
+                                                <AlertDialog>
+                                                    <AlertDialogTrigger asChild>
+                                                        <Button variant="outline"><TrashIcon /></Button>
+                                                    </AlertDialogTrigger>
+                                                    <AlertDialogContent>
+                                                        <AlertDialogHeader>
+                                                            <Icon icon={TrashIcon} className="w-6 h-6 mr-3" />
+                                                            Delete Product
 
-                                                    onClick={() => openModal(product.id)}
-                                                    size="sm"
-                                                ><TrashIcon /> Delete</Button>
+                                                            <AlertDialogDescription>
+                                                                Make sure you want to delete product{" "}
+                                                                {selectedDeleteProduct && `"${selectedDeleteProduct.name}"`}
+                                                            </AlertDialogDescription>
+                                                        </AlertDialogHeader>
+                                                        <AlertDialogFooter>
+                                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                            <AlertDialogAction>Continue</AlertDialogAction>
+                                                        </AlertDialogFooter>
+                                                    </AlertDialogContent>
+                                                </AlertDialog>
                                             </div>
                                         </div>
                                     </CardContent>
@@ -491,36 +505,46 @@ const ProductsAll = () => {
                         ))}
                     </div>
 
-                    {/* <Pagination
-                        totalResults={totalResults}
-                        resultsPerPage={resultsPerPage}
-                        label="Table navigation"
-                        onChange={onPageChange}
-                    /> */}
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious href="#" />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">1</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#" isActive>
-                                    2
-                                </PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">3</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationEllipsis />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationNext href="#" />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
+                    <TableFooter className=" flex justify-center">
+                        <TableRow >
+                            <TableCell colSpan={100} className="text-center ">
+                                <Pagination>
+                                    <PaginationContent>
+                                        {/* Previous Button */}
+                                        <PaginationItem>
+                                            <PaginationPrevious
+                                                href="#"
+                                                onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                                                className={page === 1 ? "pointer-events-none opacity-50" : ""}
+                                            />
+                                        </PaginationItem>
+
+                                        {/* Dynamic Page Numbers */}
+                                        {Array.from({ length: Math.ceil(totalResults / resultsPerPage) }, (_, i) => (
+                                            <PaginationItem key={i}>
+                                                <PaginationLink
+                                                    href="#"
+                                                    isActive={page === i + 1}
+                                                    onClick={() => setPage(i + 1)}
+                                                >
+                                                    {i + 1}
+                                                </PaginationLink>
+                                            </PaginationItem>
+                                        ))}
+
+                                        {/* Next Button */}
+                                        <PaginationItem>
+                                            <PaginationNext
+                                                href="#"
+                                                onClick={() => setPage((prev) => Math.min(prev + 1, Math.ceil(totalResults / resultsPerPage)))}
+                                                className={page === Math.ceil(totalResults / resultsPerPage) ? "pointer-events-none opacity-50" : ""}
+                                            />
+                                        </PaginationItem>
+                                    </PaginationContent>
+                                </Pagination>
+                            </TableCell>
+                        </TableRow>
+                    </TableFooter>
                 </>
             )}
         </div>

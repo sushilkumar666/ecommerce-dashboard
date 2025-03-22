@@ -68,11 +68,14 @@ function Layout() {
     const { isSidebarOpen, closeSidebar } = useSidebar();
     return (
         <div
-            className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}>
+            className={`flex h-screen bg-gray-50 dark:bg-gray-900  ${isSidebarOpen && 'overflow-hidden'}`}>
             <Sidebar />
             <div className="flex flex-col flex-1 w-full">
                 <Header />
-                <Outlet />
+                <div className="h-full overflow-y-auto">
+                    <div className="container grid px-6 mx-auto"><Outlet /></div>
+                </div>
+
             </div>
         </div>
     )

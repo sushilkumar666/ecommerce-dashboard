@@ -58,7 +58,7 @@ const UsersTable: React.FC<UserTableProps> = ({ resultsPerPage, filter }) => {
 
     return (
         <div>
-            <Table className="mb-8">
+            <Table className="mb-8 bg-white dark:bg-black">
                 <TableHeader>
                     <TableRow>
                         <TableHead>First Name</TableHead>
@@ -77,7 +77,7 @@ const UsersTable: React.FC<UserTableProps> = ({ resultsPerPage, filter }) => {
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <p className="font-semibold">{user.first_name}</p>
+                                        <p className="font-semibold ml-3">{user.first_name}</p>
                                     </div>
                                 </div>
                             </TableCell>
@@ -100,30 +100,46 @@ const UsersTable: React.FC<UserTableProps> = ({ resultsPerPage, filter }) => {
 
             </TableFooter> */}
 
-            <Pagination>
-                <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#" isActive>
-                            2
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationNext href="#" />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
+            <TableFooter className=" flex justify-center">
+                <TableRow >
+                    <TableCell colSpan={100} className="text-center ">
+                        <Pagination>
+                            <PaginationContent>
+                                {/* Previous Button */}
+                                <PaginationItem>
+                                    <PaginationPrevious
+                                        href="#"
+                                        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                                        className={page === 1 ? "pointer-events-none opacity-50" : ""}
+                                    />
+                                </PaginationItem>
+
+                                {/* Dynamic Page Numbers */}
+                                {Array.from({ length: Math.ceil(totalResults / resultsPerPage) }, (_, i) => (
+                                    <PaginationItem key={i}>
+                                        <PaginationLink
+                                            href="#"
+                                            isActive={page === i + 1}
+                                            onClick={() => setPage(i + 1)}
+                                        >
+                                            {i + 1}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                ))}
+
+                                {/* Next Button */}
+                                <PaginationItem>
+                                    <PaginationNext
+                                        href="#"
+                                        onClick={() => setPage((prev) => Math.min(prev + 1, Math.ceil(totalResults / resultsPerPage)))}
+                                        className={page === Math.ceil(totalResults / resultsPerPage) ? "pointer-events-none opacity-50" : ""}
+                                    />
+                                </PaginationItem>
+                            </PaginationContent>
+                        </Pagination>
+                    </TableCell>
+                </TableRow>
+            </TableFooter>
         </div>
 
     );

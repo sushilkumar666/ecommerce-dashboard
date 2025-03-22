@@ -36,12 +36,15 @@ export const doughnutOptions = {
     },
     options: {
         responsive: true,
-        cutoutPercentage: 80,
+        cutout: "70%",
+
     },
     legend: {
         display: false,
     },
+
 };
+
 
 
 
@@ -73,7 +76,7 @@ export const lineOptions = {
             },
         ],
     },
-    options:  {
+    options: {
         responsive: true,
         tooltips: {
             mode: "index",

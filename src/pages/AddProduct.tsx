@@ -107,8 +107,8 @@ const AddProduct = () => {
                         </Label>
 
                         <div className="w-full">
-                            <Button size="lg" >
-                                <AddIcon />
+                            <Button className="bg-blue-500 hover:bg-blue-700" size="lg" >
+                                <AddIcon /> Add Product
                             </Button>
                         </div>
                     </CardContent>
@@ -117,7 +117,7 @@ const AddProduct = () => {
                 <Card className="h-48">
                     <CardContent>
                         <div className="flex mb-8">
-                            <Button className="mr-3 bg-blue-500" >
+                            <Button className="mr-3 bg-blue-500 hover:bg-blue-700" >
                                 <PublishIcon />  Publish
                             </Button>
                             <Button variant="link" >

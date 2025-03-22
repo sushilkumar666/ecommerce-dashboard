@@ -46,7 +46,7 @@ const Chats = () => {
                         {selectedChat.first_name} {selectedChat.last_name}
                     </p>
 
-                    <Badge className={selectedChat.state === true ? `bg-green-500` : `bg-red-500`} >
+                    <Badge className={`${selectedChat.state === true ? "bg-green-500" : "bg-red-500 "} dark:text-white`} >
                         {selectedChat.state === true ? "Online" : "Away"}
                     </Badge>
                 </div>

@@ -63,7 +63,8 @@ const SingleProduct = () => {
 
                             <Badge
 
-                                className={product?.qty > 0 ? "success" : "danger" + `mb-2`}
+                                className={`${product?.qty > 0 ? "bg-green-600" : "bg-red-500"} mb-2 dark:text-gray-200`}
+
                             >
                                 <p className="break-normal">
                                     {product?.qty > 0 ? `In Stock` : "Out of Stock"}

@@ -104,10 +104,10 @@ const OrdersTable: React.FC<OrderTableProps> = ({ resultsPerPage, filter }) => {
     }, [page, resultsPerPage, filter]);
 
     return (
-        <div>
+        <>
             {/* Table */}
 
-            <Table className="mb-8">
+            <Table className="mb-8 bg-white dark:bg-black">
                 <TableHeader>
                     <TableRow>
                         <TableHead>Client</TableHead>
@@ -134,7 +134,7 @@ const OrdersTable: React.FC<OrderTableProps> = ({ resultsPerPage, filter }) => {
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <p className="font-semibold">{user.name}</p>
+                                        <p className="font-semibold ml-3">{user.name}</p>
                                     </div>
                                 </div>
                             </TableCell>
@@ -146,19 +146,17 @@ const OrdersTable: React.FC<OrderTableProps> = ({ resultsPerPage, filter }) => {
                             </TableCell>
                             <TableCell>
                                 <Badge
-                                    //@ts-ignore
-                                    variant={
-                                        user.status === "Un-paid"
-                                            ? "destructive"
-                                            : user.status === "Paid"
-                                                ? "success"
-                                                : user.status === "Completed"
-                                                    ? "warning"
-                                                    : "secondary"
-                                    }
+                                    className={`${user.status === "Un-paid"
+                                        ? "bg-red-100 text-red-800"
+                                        : user.status === "Paid"
+                                            ? "bg-green-100 text-green-800"
+                                            : user.status === "Completed"
+                                                ? "bg-yellow-100 text-yellow-800"
+                                                : "bg-blue-100 text-blue-800"}`}
+
                                 >
                                     {user.status}
-                                </Badge>;
+                                </Badge>
                             </TableCell>
                             <TableCell>
                                 <span className="text-sm">
@@ -169,42 +167,52 @@ const OrdersTable: React.FC<OrderTableProps> = ({ resultsPerPage, filter }) => {
                     ))}
                 </TableBody>
             </Table>
-            {/* <TableFooter>
-                <Pagination
-                        totalResults={totalResults}
-                        resultsPerPage={resultsPerPage}
-                        label="Table navigation"
-                        onChange={onPageChange}
-                    />
+            <TableFooter className=" flex justify-center">
+                <TableRow >
+                    <TableCell colSpan={100} className="text-center ">
+                        <Pagination>
+                            <PaginationContent>
+                                {/* Previous Button */}
+                                <PaginationItem>
+                                    <PaginationPrevious
+                                        href="#"
+                                        onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                                        className={page === 1 ? "pointer-events-none opacity-50" : ""}
+                                    />
+                                </PaginationItem>
 
-                
-            </TableFooter> */}
-            <Pagination>
-                <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#" isActive>
-                            2
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">3</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationNext href="#" />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
+                                {/* Dynamic Page Numbers */}
+                                {Array.from({ length: Math.ceil(totalResults / resultsPerPage) }, (_, i) => (
+                                    <PaginationItem key={i}>
+                                        <PaginationLink
+                                            href="#"
+                                            isActive={page === i + 1}
+                                            onClick={() => setPage(i + 1)}
+                                        >
+                                            {i + 1}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                ))}
 
-        </div>
+                                {/* Next Button */}
+                                <PaginationItem>
+                                    <PaginationNext
+                                        href="#"
+                                        onClick={() => setPage((prev) => Math.min(prev + 1, Math.ceil(totalResults / resultsPerPage)))}
+                                        className={page === Math.ceil(totalResults / resultsPerPage) ? "pointer-events-none opacity-50" : ""}
+                                    />
+                                </PaginationItem>
+                            </PaginationContent>
+                        </Pagination>
+                    </TableCell>
+                </TableRow>
+            </TableFooter>
+
+
+
+
+
+        </>
     );
 };
 

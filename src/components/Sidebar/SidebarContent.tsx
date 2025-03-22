@@ -79,7 +79,7 @@ const SidebarContent: React.FC = () => {
             </ul>
 
             <div className="px-6 my-6">
-                <Button>
+                <Button className="bg-[#7e3af2] text-white hover:bg-purple-600">
                     Generate Report
                     <span className="ml-2" aria-hidden="true">+</span>
                 </Button>

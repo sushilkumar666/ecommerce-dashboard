@@ -65,19 +65,39 @@ function Dashboard() {
                 </InfoCard>
             </div>
 
-            <div className="grid gap-6 mb-8 md:grid-cols-2">
+            {/* <div className="grid  gap-6 mb-8 md:grid-cols-2">
                 <ChartCard title="User Analytics">
                     <
                         //@ts-ignore
                         Line {...lineOptions} />
-                    <ChartLegend legends={lineLegends} />
+                    <ChartLegend  legends={lineLegends} />
                 </ChartCard>
 
                 <ChartCard title="Revenue">
                     <Doughnut {...doughnutOptions} />
                     <ChartLegend legends={doughnutLegends} />
                 </ChartCard>
+            </div> */}
+
+            <div className="grid gap-6 mb-8 md:grid-cols-2">
+                <ChartCard title="User Analytics">
+                    <div className="h-[300px] w-full flex justify-center">
+
+                        <
+                            //@ts-ignore
+                            Line {...lineOptions} />
+                    </div>
+                    <ChartLegend legends={lineLegends} />
+                </ChartCard>
+
+                <ChartCard title="Revenue">
+                    <div className="h-[300px] w-full   flex justify-center  ">
+                        <Doughnut {...doughnutOptions} />
+                    </div>
+                    <ChartLegend legends={doughnutLegends} />
+                </ChartCard>
             </div>
+
 
             <PageTitle>Orders</PageTitle>
             <OrdersTable filter={"all"} resultsPerPage={10} />

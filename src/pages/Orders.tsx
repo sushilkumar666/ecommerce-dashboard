@@ -9,7 +9,7 @@ import { HomeIcon } from "../icons";
 import OrdersTable from "@/components/OrderTable";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Select } from "@/components/ui/select";
+// import { Select } from "@/components/ui/select";
 
 
 const Icon = (
@@ -65,21 +65,22 @@ const Orders = () => {
                         </p>
 
                         <Label className="mx-3">
-                            {/* <Select
+                            <select className="bg-white dark:bg-black  dark:focus:border-purple-500 focus:border-purple-500 border-1 dark:border-gray-500 py-2 rounded-sm px-2"
+                                //@ts-ignore
                                 onChange={(e: React.MouseEvent<HTMLButtonElement>) => handleFilter(e.target.value)}
                             >
                                 <option>All</option>
                                 <option>Un-Paid Orders</option>
                                 <option>Paid Orders</option>
                                 <option>Completed</option>
-                            </Select> */}
+                            </select>
                         </Label>
 
                         <Label className="">
                             {/* <!-- focus-within sets the color for the icon when input is focused --> */}
-                            <div className="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
+                            <div className="relative text-gray-500  focus-within:text-purple-600  border dark:text-gray-200   border-gray-50  rounded-lg dark:border-gray-500  dark:focus-within:text-purple-400">
                                 <input
-                                    className="py-3 pr-5 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input"
+                                    className="py-2 px-2 dark:bg-black  text-sm text-black border rounded-sm  dark:text-gray-200  focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-purple form-input"
                                     value={resultsPerPage}
                                     onChange={(e) => setResultPerPage(Number(e.target.value))}
                                 />

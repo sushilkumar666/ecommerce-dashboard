@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SidebarContext } from "../context/SidebarContext";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useTheme } from "@/context/ThemeContext";
@@ -46,7 +46,6 @@ import {
 
 function Header() {
     // const { mode, toggleMode } = useContext(WindmillContext);
-    const { mode, toggleMode } = useTheme();
     //@ts-ignore
     const { toggleSidebar } = useContext(SidebarContext);
     const navigate = useNavigate();
@@ -61,6 +60,20 @@ function Header() {
         setIsProfileMenuOpen(!isProfileMenuOpen);
     }
 
+    const [darkMode, setDarkMode] = useState(
+        typeof window !== "undefined" && localStorage.getItem("theme") === "dark"
+    );
+
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+        }
+    }, [darkMode]);
+
     return (
         <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
             <div className="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
@@ -74,21 +87,22 @@ function Header() {
                 </button>
                 {/* <!-- Search input --> */}
                 <div className="flex justify-center flex-1 lg:mr-32">
-                    <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
+                    <div className="relative w-full max-w-xl mr-6  ">
                         <div className="absolute inset-y-0 flex items-center pl-2">
                             <SearchIcon className="w-4 h-4" aria-hidden="true" />
                         </div>
                         <Input
-                            className="pl-8 text-gray-700"
+                            className="pl-8 border border-gray-200   focus:ring-2 focus:outline-none focus:ring-purple-300 text-gray-700 "
                             placeholder="Search for projects"
                             aria-label="Search"
                         />
+
                     </div>
                 </div>
                 <ul className="flex items-center flex-shrink-0 space-x-6">
                     {/* <!-- Theme toggler --> */}
                     <li className="flex">
-                        <button
+                        {/* <button
                             className="rounded-md focus:outline-none focus:shadow-outline-purple"
                             onClick={toggleMode}
                             aria-label="Toggle color mode"
@@ -98,23 +112,18 @@ function Header() {
                             ) : (
                                 <MoonIcon className="w-5 h-5" aria-hidden="true" />
                             )}
+                        </button> */}
+
+                        <button
+                            className="rounded-md focus:outline-none text-sm focus:shadow-outline-purple"
+                            onClick={() => setDarkMode(!darkMode)}
+                        >
+                            {darkMode ? <SunIcon className="w-5 h-5" aria-hidden="true" /> : <MoonIcon className="w-5 h-5" aria-hidden="true" />}
                         </button>
                     </li>
                     {/* <!-- Notifications menu --> */}
                     <li className="relative">
-                        <button
-                            className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
-                            onClick={handleNotificationsClick}
-                            aria-label="Notifications"
-                            aria-haspopup="true"
-                        >
-                            <BellIcon className="w-5 h-5" aria-hidden="true" />
-                            {/* <!-- Notification badge --> */}
-                            <span
-                                aria-hidden="true"
-                                className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
-                            ></span>
-                        </button>
+
 
                         {/* <Dropdown
                             align="right"
@@ -144,7 +153,19 @@ function Header() {
 
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="outline">Notification</Button>
+                                <button
+                                    className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
+                                    onClick={handleNotificationsClick}
+                                    aria-label="Notifications"
+                                    aria-haspopup="true"
+                                >
+                                    <BellIcon className="w-5 h-5" aria-hidden="true" />
+                                    {/* <!-- Notification badge --> */}
+                                    <span
+                                        aria-hidden="true"
+                                        className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"
+                                    ></span>
+                                </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56">
                                 <DropdownMenuLabel>Messages</DropdownMenuLabel>
@@ -152,11 +173,11 @@ function Header() {
                                 <DropdownMenuGroup>
                                     <DropdownMenuItem onClick={() => navigate("/app/chats")}>
                                         <span>Messages</span>
-                                        <DropdownMenuShortcut> <Badge className="bg-red-400">13</Badge></DropdownMenuShortcut>
+                                        <DropdownMenuShortcut> <Badge className="bg-red-50 text-red-500">13</Badge></DropdownMenuShortcut>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem onClick={() => navigate("/app/chats")}>
                                         Sales
-                                        <DropdownMenuShortcut><Badge className="bg-red-400">2</Badge></DropdownMenuShortcut>
+                                        <DropdownMenuShortcut><Badge className="bg-red-50 text-red-500">2</Badge></DropdownMenuShortcut>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem onClick={() => alert("Alerts!")}>
                                         <span>Alerts</span>
@@ -169,23 +190,7 @@ function Header() {
                     </li>
                     {/* <!-- Profile menu --> */}
                     <li className="relative">
-                        <button
-                            className="rounded-full focus:shadow-outline-purple focus:outline-none"
-                            onClick={handleProfileClick}
-                            aria-label="Account"
-                            aria-haspopup="true"
-                        >
-                            {/* <Avatar
-                                className="align-middle"
-                                src={response.avatar}
-                                alt=""
-                                aria-hidden="true"
-                            /> */}
-                            <Avatar>
-                                <AvatarImage src={response.avatar} alt="@shadcn" />
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar>
-                        </button>
+
                         {/* <Dropdown
                             align="right"
                             isOpen={isProfileMenuOpen}
@@ -213,13 +218,29 @@ function Header() {
 
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="outline">Notification</Button>
+                                <button
+                                    className="rounded-full focus:shadow-outline-purple focus:outline-none border-4 border-purple-200"
+                                    onClick={handleProfileClick}
+                                    aria-label="Account"
+                                    aria-haspopup="true"
+                                >
+                                    {/* <Avatar
+                                className="align-middle"
+                                src={response.avatar}
+                                alt=""
+                                aria-hidden="true"
+                            /> */}
+                                    <Avatar>
+                                        <AvatarImage src={response.avatar} alt="@shadcn" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+                                </button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56">
                                 <DropdownMenuLabel>Messages</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>
-                                    <DropdownMenuItem onClick={() => navigate("/app/chats")}>
+                                    <DropdownMenuItem onClick={() => navigate("/app/manage-profile")}>
                                         <OutlinePersonIcon
                                             className="w-4 h-4 mr-3"
                                             aria-hidden="true"
@@ -227,7 +248,7 @@ function Header() {
                                         <span>Profile</span>
                                         {/* <DropdownMenuShortcut> <Badge className="bg-red-400">13</Badge></DropdownMenuShortcut> */}
                                     </DropdownMenuItem>
-                                    <DropdownMenuItem onClick={() => navigate("/app/chats")}>
+                                    <DropdownMenuItem onClick={() => navigate("/app/settings")}>
                                         <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                                         <span>Settings</span>
                                         {/* <DropdownMenuShortcut><Badge className="bg-red-400">2</Badge></DropdownMenuShortcut> */}
@@ -237,7 +258,7 @@ function Header() {
                                             className="w-4 h-4 mr-3"
                                             aria-hidden="true"
                                         />
-                                        <span>Log out</span>
+                                        <span>Alert</span>
 
                                     </DropdownMenuItem>
 

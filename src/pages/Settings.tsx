@@ -1,13 +1,18 @@
-import React from "react";
-// import PageTitle from "../components/Typography/PageTitle";
-import PageTitle from "@/Typography/PageTitle";
+import * as React from 'react';
 
-const Settings = () => {
+import { Notifications } from '@/components/Settings/notifications';
+import { UpdatePasswordForm } from '@/components/Settings/updatePasswordForm';
+
+
+export default function Page(): React.JSX.Element {
     return (
-        <div>
-            <PageTitle>Settings</PageTitle>
+        <div className="space-y-6">
+            {/* Title */}
+            <h2 className="text-2xl font-bold">Settings</h2>
+
+            {/* Sections */}
+            <Notifications />
+            <UpdatePasswordForm />
         </div>
     );
-};
-
-export default Settings;
+}
