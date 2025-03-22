@@ -134,18 +134,17 @@ const ProductsAll = () => {
     }, [page, resultsPerPage]);
 
     // Delete action model
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedDeleteProduct, setSelectedDeleteProduct] = useState<ResponseType | null>(null);
     async function openModal(productId: number) {
         let product = await data.filter((product) => product.id === productId)[0];
         // console.log(product);
         setSelectedDeleteProduct(product);
-        setIsModalOpen(true);
+        // setIsModalOpen(true);
     }
 
-    function closeModal() {
-        setIsModalOpen(false);
-    }
+    // function closeModal() {
+    //     setIsModalOpen(false);
+    // }
 
     // Handle list view
     const handleChangeView = () => {
